@@ -7,9 +7,9 @@
 
 %---------------------------------------------------------------------------
 \documentclass[
-	a4paper,					% paper format
-	10pt,							% fontsize
-	twoside,					% double-sided
+	a4paper,				% paper format
+	10pt,					% fontsize
+	oneside,			    % one-sided
 	openright,				% begin new chapter on right side
 	notitlepage,			% use no standard title page
 	parskip=half,			% set paragraph skip to half of a line
@@ -24,8 +24,8 @@
 %---------------------------------------------------------------------------
 \usepackage[standard-baselineskips]{cmbright}
 
-\usepackage[ngerman]{babel}										% german hyphenation
-%\usepackage[latin1]{inputenc}  							% Unix/Linux - load extended character set (ISO 8859-1)
+\usepackage[ngerman,english]{babel}										% english hyphenation
+\usepackage[utf8]{inputenc}  							% Unix/Linux - load extended character set (ISO 8859-1)
 \usepackage[ansinew]{inputenc}  							% Windows - load extended character set (ISO 8859-1)
 \usepackage[T1]{fontenc}											% hyphenation of words with �,� and �
 \usepackage{textcomp}													% additional symbols
@@ -118,7 +118,7 @@
 %---------------------------------------------------------------------------
 \usepackage[nonumberlist]{glossaries}
 \makeglossaries
-\include{datenbanken/glossar}
+\include{database/glossary}
 %---------------------------------------------------------------------------
 
 % Intro:
@@ -128,8 +128,8 @@
 \pagenumbering{roman}														
 %---------------------------------------------------------------------------
 
-\input{vorspann/titel}					% Titel der Arbeit aus Datei titel.tex lesen
-\input{vorspann/version}				% Versionsnummer und -datum aus Datei version.tex lesen
+\input{leader/title}					% Titel der Arbeit aus Datei titel.tex lesen
+\input{leader/version}				% Versionsnummer und -datum aus Datei version.tex lesen
 
 % Set up header and footer
 %---------------------------------------------------------------------------
@@ -140,8 +140,8 @@
 
 \fancyhf{}																		% clean all fields
 \fancypagestyle{plain}{												% new definition of plain style	
-	\fancyfoot[OR,EL]{\footnotesize \thepage} 	% footer right part --> page number
-	\fancyfoot[OL,ER]{\footnotesize \titel, Version \versionnumber, \versiondate}	% footer even page left part 
+	\fancyfoot[R]{\footnotesize \thepage} 	% footer right part --> page number
+	\fancyfoot[L]{\footnotesize \heading, Version \versionnumber, \versiondate}	% footer even page left part 
 }
 
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.  #1}{}}
@@ -154,15 +154,15 @@
 
 % Title Page and Abstract
 %---------------------------------------------------------------------------
-%\include{vorspann/titelseite_ohne_bild}		% activate for Titelseite ohne Bild
-\include{vorspann/titelseite_mit_bild}			% activate for Titelseite mit Bild
-\include{vorspann/versionen}
+%\include{leader/frontpage_without_picture}		% activate for frontpage without picture
+\include{leader/frontpage_with_picture}		% activate for frontpage with picture
+\include{leader/versions}
 \cleardoubleemptypage
 \setcounter{page}{1}
 \cleardoublepage
 \phantomsection 
 \addcontentsline{toc}{chapter}{Management Summary}
-\include{vorspann/management_summary}
+\include{leader/management_summary}
 \cleardoubleemptypage
 %---------------------------------------------------------------------------
 
@@ -176,26 +176,26 @@
 %---------------------------------------------------------------------------
 \pagenumbering{arabic}
 
-\include{kapitel/einleitung}
-\include{kapitel/anleitungen}
-\include{kapitel/satzspiegeltest}
-\include{kapitel/schlussfolgerungen}
+\include{chapters/introduction}
+\include{chapters/instructions}
+\include{chapters/typeareatest}
+\include{chapters/conclusions}
 %---------------------------------------------------------------------------
 
 % Selbst�ndigkeitserkl�rung
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Selbst�ndigkeitserkl�rung}
-\include{vorspann/selbstaendigkeitserklaerung}
+\addcontentsline{toc}{chapter}{Declaration of authorship}
+\include{leader/declaration_authorship}
 %---------------------------------------------------------------------------
 
 % Glossary
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Glossar}
-\renewcommand{\glossaryname}{Glossar}
+\addcontentsline{toc}{chapter}{Glossay}
+%\renewcommand{\glossaryname}{Glossay}
 \printglossary
 %---------------------------------------------------------------------------
 
@@ -203,20 +203,20 @@
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Literaturverzeichnis}
+\addcontentsline{toc}{chapter}{Bibliography}
 \bibliographystyle{IEEEtranS}
-\bibliography{datenbanken/bibliography}{}
+\bibliography{database/bibliography}{}
 %---------------------------------------------------------------------------
 
 % Listings
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Abbildungsverzeichnis}
+\addcontentsline{toc}{chapter}{List of figures}
 \listoffigures
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Tabellenverzeichnis}
+\addcontentsline{toc}{chapter}{List fo tables}
 \listoftables
 %---------------------------------------------------------------------------
 
@@ -224,8 +224,7 @@
 %---------------------------------------------------------------------------
 \cleardoublepage
 \phantomsection 
-\addcontentsline{toc}{chapter}{Stichwortverzeichnis}
-\renewcommand{\indexname}{Stichwortverzeichnis}
+\addcontentsline{toc}{chapter}{Index}
 \printindex
 %---------------------------------------------------------------------------
 
@@ -233,9 +232,9 @@
 %---------------------------------------------------------------------------
 \appendix
 \settocdepth{section}
-\include{anhang/beispielanhang}
-\include{anhang/beispielanhangB}
-\include{anhang/inhaltCDROM}
+\include{appendix/appendixexemple}
+\include{appendix/appendixexempleB}
+\include{appendix/contentCDROM}
 %---------------------------------------------------------------------------
 
 %---------------------------------------------------------------------------
