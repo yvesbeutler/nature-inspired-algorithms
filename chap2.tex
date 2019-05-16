@@ -17,15 +17,85 @@ bei einer Verminderung der Überlebenschancen jedoch wieder rückgängig gemacht
 ist sehr zeitaufwändig, jedoch nachhaltig wirksam. Viele Algorithmen wie beispielsweise
 der Hill Climbing Algorithmus wenden ebenfalls dieses Prinzip an.
 
+\section{Anwendungsgebiete}
+hier anwendungsfälle definieren
+
 \section{Genetische Algorithmen}
 
-Die Genetischen Algorithmen sind der bekannteste Vertreter aus der Gruppe der Evolutionären
-Algorithmen. 
+Die Genetischen Algorithmen sind die bekanntesten Vertreter aus der Gruppe der Evolutionären
+Algorithmen. Sie orientierten sich an der Populationsgenetik und insbesondere an den Mendelschen
+Regeln. \cite{Mcc00}
+Bei Genetischen Algorithmen werden häufig Begriffe aus der Biologie verwendet. Die Anzahl an
+möglichen Lösungen nennt man Population. Eine einzelne Lösungsvariante wird als Chromosom
+bezeichnet, wohingegen diese wiederum aus einer Kombination an Variablen, in der Biologie Gene
+genannt, bestehen. Wie aus der Grafik \ref{fig:genetics} zu entnehmen ist, besteht ein Chromosom
+$A_n$ aus mehreren Genen.
+\\
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale=0.6]{resources/genetic_algorithms.png}
+  \caption{Population, Chromosome und Gene}
+  \label{fig:genetics}
+\end{figure}
+
+Im folgenden werden die einzelnen Schritte erläutert, welche die Natur wie auch die Genetischen
+Algorithmen durchlaufen, um eine Anfangspopulation schrittweise weiterzuentwickeln. Die Natur
+sucht nach der erfolgsversprechendsten Lösung zum Überleben, wohingegen die Algorithmen
+optimale Lösungen für ganz unterschiedliche Problemstellungen suchen. \cite{Mal17}
 
 \subsection{Initiale Population}
+Eine Population besteht aus mehreren unabhängigen Lösungen, im biologischen Kontext Chromosomen,
+um eine bestimmte Problemstellung zu lösen. Bei den meisten Implementationen von Genetischen
+Algorithmen wird ein Gen durch einen String repräsentiert. Bei Chromosomen eignen sich auch
+Binärwerte um das Vorhandensein eines Gens auszuzeichnen.
+
 \subsection{Selektion}
+Anhand einer sogenannten Fitnessfunktion wird für jedes Individuum eine Punktzahl berechnet.
+Die Punktzahl gibt darüber Auskunft, wie kompetitiv sich ein Individuum gegenüber einem anderen
+verhält. Je höher dieser Wert, desto höher sind die Chancen, das besagtes Individuum von der
+Selektion für die Reproduktion verwendet wird. Durch die Selektion können nur die fittesten
+Individuen ihre Gene an die nächste Generation weitergeben und den schwächeren Individuen wird
+der Reproduktionszyklus verwehrt.
+
 \subsection{Kreuzung}
+Der womöglich zentralste Bestandteil eines Genetischen Algorithmus ist die Kreuzung. Hier werden
+aus den zuvor selektierten Individuen, einer Ansammlung der vielversprechendsten Lösungen, zwei
+Individuen zur Paarung ausgewählt. Die beiden Ausgewählten tauschen ihre Gene bis zu einem bestimmten
+Punkt, dem sogenannten Crossover Point, aus. Die restlichen Gene hinter diesem Punkt werden nicht
+verändert. Durch diesen Prozess entstehen gleich zwei neue Individuen.
+
 \subsection{Mutation}
+Die Natur nutzt Mutationen aus, um die Artenvielfalt innerhalb einer Population zu gewährleisten.
+Trotz der geringen Wahrscheinlichkeit kommt es vor, dass einzelne Gene, welche durch die Kreuzung
+eigentlich vorhanden wären, nicht mehr vorhanden sind und umgekehrt. Ein Genetischer Algorithmus
+flippt beispielsweise einzelne Variablen seiner Nachkommen.
+
+\subsection{Terminierung}
+Ein Genetischer Algorithmus terminiert, sobald sich die nächste Generation nicht mehr merklich von
+ihren Vorgängern unterscheidet. Man spricht oftmals auch von Konvergenz. Es ist jedem Algorithmus
+selbst überlassen, wie lange ein Individuum in der Population überlebt. Häufig werden bei jedem
+Reproduktionszyklus ein oder mehrere Individuen mit den niedrigsten Fitnesswerten aus der Population
+gestrichen. In der Natur übernimmt der Tod diese Funktion.
+
+\subsection{Beispiel Implementation}
+Die einzelnen Schritte eines Genetischen Algorithmus sind in Listing 2.1 durch
+ein Python-Beispiel verdeutlicht:
+
+\begin{lstlisting}[language=Python, caption=Genetischer Algorithmus (Python)]
+  # randomly initialize population
+  population = [a, b, c, d]
+  generation = 1
+
+  # run genetic algorithm
+  genetic_algorithm(population)
+
+  def genetic_algorithm(init_population=[]):
+    population = init_population
+    for individual in population:
+      print('hello')
+    return population
+
+\end{lstlisting}
 
 \section{Weitere Algorithmen}
 

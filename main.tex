@@ -33,6 +33,41 @@
 \usepackage[T1]{fontenc}
 \pagestyle{plain}
 
+%% Used for displaying images
+\usepackage{graphicx}
+%% Used for special url fonts
+\usepackage{url}
+
+%% Define syntax highlighting
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+ 
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+ 
+\lstset{style=mystyle}
+
 %% This bit allows you to either specify only the files which you wish to
 %% process, or `all' to process all files which you \include.
 %% Krishna Sethuraman (1990).
@@ -58,8 +93,8 @@
 \include{chap1}
 \include{chap2}
 \appendix
-\include{appa}
-\include{appb}
+% \include{appa}
+% \include{appb}
 \include{biblio}
 \end{document}
 

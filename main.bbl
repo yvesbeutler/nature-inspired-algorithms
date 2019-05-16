@@ -1,5 +1,28 @@
-\newcommand{\noopsort}[1]{} \newcommand{\printfirst}[2]{#1}
-  \newcommand{\singleletter}[1]{#1} \newcommand{\switchargs}[2]{#2#1}
-\begin{thebibliography}{}
+\begin{thebibliography}{{McC}00}
+
+\bibitem[{Bro}11]{Bro11}
+Jason {Brownlee}.
+\newblock {\em {Clever Algorithms: Nature-Inspired Programming Recipes}}.
+\newblock LuLu, January 2011.
+\newblock \url{http://www.cleveralgorithms.com}.
+
+\bibitem[{Cro}14]{Cro14}
+Alfred {Crosby}.
+\newblock {Geckskin - Gecko-Like Adhesives}, 2014.
+\newblock University of Massachusetts Amherst, \url{https://geckskin.umass.edu}
+  (Zugriff am 20.04.2019).
+
+\bibitem[{Mal}17]{Mal17}
+Vijini {Mallawaarachchi}.
+\newblock {Introduction to Genetic Algorithms}, July 2017.
+\newblock
+  \url{https://towardsdatascience.com/introduction-to-genetic-algorithms-e396e98d8bf3}
+  (Zugriff am 04.05.2019).
+
+\bibitem[{McC}00]{Mcc00}
+Phillip {McClean}.
+\newblock {Mendel's First Law of Genetics (Law of Segregation)}, 2000.
+\newblock \url{https://www.ndsu.edu/pubweb/~mcclean/plsc431/mendel/mendel1.htm}
+  (Zugriff am 16.05.2019).
 
 \end{thebibliography}
