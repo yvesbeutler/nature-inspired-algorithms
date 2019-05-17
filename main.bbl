@@ -12,6 +12,19 @@ Alfred {Crosby}.
 \newblock University of Massachusetts Amherst, \url{https://geckskin.umass.edu}
   (Zugriff am 20.04.2019).
 
+\bibitem[{Gou}19]{Gou19}
+Rinu {Gour}.
+\newblock {Python Genetic Algorithms With Artificial Intelligence}, March 2019.
+\newblock
+  \url{https://medium.com/@rinu.gour123/python-genetic-algorithms-with-artificial-intelligence}
+  (Zugriff am 17.05.2019).
+
+\bibitem[{Koz}10]{Koz10}
+John {Koza}.
+\newblock {\em {Human-competitive results produced by genetic programming}}.
+\newblock Springer US, May 2010.
+\newblock \url{https://doi.org/10.1007%2Fs10710-010-9112-3}.
+
 \bibitem[{Mal}17]{Mal17}
 Vijini {Mallawaarachchi}.
 \newblock {Introduction to Genetic Algorithms}, July 2017.
@@ -24,5 +37,17 @@ Phillip {McClean}.
 \newblock {Mendel's First Law of Genetics (Law of Segregation)}, 2000.
 \newblock \url{https://www.ndsu.edu/pubweb/~mcclean/plsc431/mendel/mendel1.htm}
   (Zugriff am 16.05.2019).
+
+\bibitem[{Sta}19a]{GenGP}
+Kai {Staats}.
+\newblock {Generational GP Algorithm}, 2019.
+\newblock \url{http://geneticprogramming.com/about-gp/gp-workflow} (Zugriff am
+  17.05.2019).
+
+\bibitem[{Sta}19b]{GenTree}
+Kai {Staats}.
+\newblock {Tree-based Genetic Programming}, 2019.
+\newblock \url{http://geneticprogramming.com/about-gp/tree-based-gp} (Zugriff
+  am 17.05.2019).
 
 \end{thebibliography}
