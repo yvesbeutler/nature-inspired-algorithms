@@ -8,20 +8,20 @@
 
 Diese Subkategorie von Algorithmen wurde durch den natürlichen Prozess der Evolution
 inspiriert. Charles Darwin begründete 1838 den Evolutionsprozess und das daraus resultierende
-Überleben der jeweils am besten angepassten Individuen mit der natürlichen Selektion.
+Überleben der jeweils am besten angepassten Individuen mit der natürlichen Selektion \cite{Wiki02}.
 Diese stellt sicher, dass sich gut an den Lebensraum angepasst Lebewesen in der Natur
 durchsetzen können, währenddessen weniger gut angepasste Individuen aussterben. Zudem
 arbeitet die Natur nach dem 'Trial and Error' Prinzip. Dadurch werden Mutationen an
 Lebewesen ausprobiert und bei positivem Effekt auf das Überleben der Spezies beibehalten,
 bei einer Verminderung der Überlebenschancen jedoch wieder rückgängig gemacht. Dieser Prozess
 ist sehr zeitaufwändig, jedoch nachhaltig wirksam. Viele Algorithmen wie beispielsweise
-der Hill Climbing Algorithmus wenden ebenfalls dieses Prinzip an.
+der Hill Climbing Algorithmus \cite{Anr18} wenden ebenfalls dieses Prinzip an.
 
 \section{Genetische Algorithmen}
 
 Die Genetischen Algorithmen sind die bekanntesten Vertreter aus der Gruppe der Evolutionären
 Algorithmen. Sie orientierten sich an der Populationsgenetik und insbesondere an den Mendelschen
-Regeln. \cite{Mcc00}
+Regeln \cite{Mcc00}.
 Bei Genetischen Algorithmen werden häufig Begriffe aus der Biologie verwendet. Die Anzahl an
 möglichen Lösungen nennt man Population. Eine einzelne Lösungsvariante wird als Chromosom
 bezeichnet, wohingegen diese wiederum aus einer Kombination an Variablen, in der Biologie Gene
@@ -31,7 +31,7 @@ $A_n$ aus mehreren Genen.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{resources/genetic_algorithms.png}
-  \caption{Population, Chromosome und Gene}
+  \caption{Population, Chromosome und Gene \cite{Mal17}}
   \label{fig:genetics}
 \end{figure}
 
@@ -76,69 +76,13 @@ Reproduktionszyklus ein oder mehrere Individuen mit den niedrigsten Fitnesswerte
 gestrichen. In der Natur übernimmt der Tod diese Funktion.
 
 \subsection{Beispiel Implementation}
-Die einzelnen Schritte eines Genetischen Algorithmus sind in Listing 2.1 durch
+Die einzelnen Schritte eines Genetischen Algorithmus sind in Listing A.1 durch
 ein Python-Beispiel verdeutlicht. Die verwendete Fitnessfunktion ist sehr rudimentär
 gehalten und berechnet lediglich die Summe der vorhandenen Gene. Die Population ist konvergiert,
 wenn ein Individuum den Fitnesswert 5 erreicht, sprich alle Gene vorhanden sind.
 
 Zweck dieses Listings ist es, den Ablauf eines Genetischen Algorithmus verständlich darzustellen.
-Für eine bessere Übersicht wurden dazu uninteressante Teile des Codes gänzlich weggelassen: \\
-
-\begin{lstlisting}[language=Python, caption=Genetischer Algorithmus (Python)]
-class Individual:
-  def __init__(self, genes):
-      self.genes = genes
-      self.fitness_function(genes)
-  
-  # calculates fitness of each individual
-  def fitness_function(self, genes):
-      score = 0
-      for gene in genes:
-          if gene == 1:
-              score += 1
-      self.fitness = score
-
-class Population:
-    def __init__(self, individuals):
-        self.individuals = individuals
-    
-    def crossover(self, parent_1, parent_2, cross_value=3):
-        offspring_1 = parent_1
-        offspring_2 = parent_2
-        
-        # exchange genes below crossover point
-        for i in range(cross_value-1):
-            gen = offspring_1.genes[i]
-            offspring_1.genes[i] = offspring_2.genes[i]
-            offspring_2.genes[i] = gen
-        
-        return [offspring_1, offspring_2]
-
-def genetic_algorithm():
-    generation = 1
-    population = Population([
-        Individual([0, 1, 0, 1, 0]), Individual([1, 1, 0, 0, 0]),
-        Individual([0, 1, 1, 1, 0]), Individual([0, 0, 0, 1, 1]),
-        Individual([1, 0, 0, 0, 1]), Individual([1, 0, 1, 1, 0])])
-
-    while population.get_fittest().fitness < 5:
-        # selection
-        parent_1 = population.get_fittest()
-        parent_2 = population.get_fittest()
-
-        # crossover
-        offspring = population.crossover(parent_1, parent_2)
-
-        # mutation
-        offspring = population.mutate(offspring)
-
-        # add offspring, remove weakest individuals
-        population.grow(offspring)
-        population.kill_weakest()
-        generation += 1
-
-    print(f'The population converged after {generation} generations')
-\end{lstlisting}
+Für eine bessere Übersicht wurden dazu uninteressante Teile des Codes gänzlich weggelassen.
 
 \subsection{Vorteile}
 Genetische Algorithmen haben gewisse Vorzüge bei der Lösung von komplexen
@@ -147,6 +91,13 @@ mit den drei Hauptfunktionen Selektion, Kreuzung und Mutation, lassen sich diese
 Algorithmen einfach parallelisieren, was sich in einer besseren Rechenzeit bemerkbar
 macht. Weiter generieren sie nicht nur eine Lösung sondern eine Vielzahl an möglichen
 Lösungen, welche mit der Zeit immer bessere Ergebnisse liefern. \cite{Gou19}
+
+\subsection{Anwendungsfälle}
+Es existieren schier endlose Einsatzmöglichkeiten für Genetische Algorithmen. Sie werden unter anderem
+zum Trainieren von Neuronalen Netzwerken eingesetzt, zur Berechnung von Fahrplänen wie auch den zu fahrenden
+Routen (analog dem Traveling Salesman Problem), zur Konstruktion von Aerodynamischen Fahrzeugchassis in
+der Luftfahrts- sowie in der Automobilbranche und häufig auch in der Finanzwirtschaft wie beispielsweise
+zur dynamischen Preisberechnung \cite{Tut}.
 
 \section{Genetic Programming}
 Eine weitere Unterart der Evolutionären Algorithmen ist Genetic Programming. Ähnlich wie
@@ -166,7 +117,7 @@ genauer erläutert.
 \begin{figure}[h!]
   \centering
   \includegraphics[scale=0.5]{resources/genetic_program_tree.png}
-  \caption{Einfaches mathematisches Programm als Tree dargestellt}
+  \caption{Einfaches mathematisches Programm als Tree dargestellt \cite{Wiki01}}
   \label{fig:gp_tree}
 \end{figure}
 
@@ -190,12 +141,3 @@ kleinen Teil der Einsatzmöglichkeiten dar. \cite{Koz10}
 
 \section{Neuroevolution}
 Hier könnte man bspw. NEAT erklären
-
-\section{Weitere Algorithmen}
-
-Weitere Unterarten von Evolutionären Algorithmen sind beispielsweise:
-- evolution strategy
-- neuroevolution (NEAT)
-
-
-
