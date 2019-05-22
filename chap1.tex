@@ -4,20 +4,55 @@
 %% You can process specific files by typing their names in at the 
 %% \files=
 %% prompt when you run the file main.tex through LaTeX.
-\chapter{Introduction}
+\chapter{Einführung}
 
-Since the beginning of our planet, nature has to deal with more or less complex
-situations to guarantee the survival of its inhabitants. The key to success is to
-accommodate best with the given environment and its circumstances. Since decades
-men adapt techniques of nature's best performers to level up modern technology like
-building planes according to the wing characteristics of birds or inventing new
-adhesives by studying the feet of geckos\footnote{https://geckskin.umass.edu}.
+Seit dem Anbeginn unseres Planeten sah sich die Natur mit mehr oder weniger
+komplexen Problemstellungen konfrontiert, um das Überleben ihrer Bewohner
+sicherzustellen. Der Schlüssel zum Erfolg ist es, sich am besten auf die
+naturgegebenen Umstände anzupassen. Ohne den Einklang mit der Natur wären die
+Überlebenschancen einer jeden Spezies schwindend gering wenn nicht gar inexistent.
+Seit Jahrzehnten adaptieren Menschen die Techniken aus der Natur und ihren Geschöpfen
+um moderne Technologien auf ein neues Level zu befördern. Flugzeuge werden nach den
+Flügelcharakteristiken von Zugvögeln konstruiert und neue Klebstoffe werden durch das
+Studium von Geckofüssen mit ihren unglaublichen Hafteigenschaften entworfen. \cite{Cro14}
 
-We need to keep in mind, that nature spent million of years finding answers to survive
-and failed at most of its attempts. But it didn't give up and adjusted certain parameters
-to get better over time. So why should men don't profit from this millions of years
-of research?
+Wir dürfen nicht ausser Acht lassen, dass die Natur Millionen von Jahre in die Forschung
+nach dem Schlüssel zum Überleben investierte und in den meisten Fällen scheiterte. Doch
+die Natur gab nicht einfach auf, sondern justierte bestimmte Parameter um über die Zeit
+zunehmend besser zu werden. Durch sich ständig ändernde Umstände sucht sie auch heute noch
+nach Lösungen für zukünftige Spezien.
 
-\section{Structure}
+Wieso sollte die Menschheit nicht selbst von diesen Millionen von Jahren an Forschung profitieren?
 
-There is some additional information I want to share with you:
+\section{Anwendungsgebiete}
+
+Nature-Inspired Algorithms werden meist dort eingesetzt, wo traditionelle Algorithmen keine oder
+keine brauchbaren Ergebnisse liefern können. Häufig scheitern altbekannte Lösungsmodelle wenn mit
+riesigen Datenmengen gearbeitet wird. Folgende Gegebenheiten können weitere Gründe sein, um auf
+Nature-Inspired Algorithms zurückzugreifen:
+
+\begin{enumerate}
+    \item Die Anzahl möglicher Lösungen im Suchraum ist so immens gross, dass die Suche nach der bestmöglichen
+          Lösung viel zu aufwändig wäre.
+    \item Die Komplexität der Problemstellung ist derart hoch, dass nur vereinfachte Modelle bei der Problemlösung
+          zum Einsatz kommen und dadurch keine aussagekräftigen Lösungen entstehen.
+    \item Die Evaluierungsfunktion zur Bewertung einer möglichen Lösung variert mit der Zeit, so dass nicht nur eine
+          sondern eine Vielzahl von Lösungen erforderlich ist.
+\end{enumerate}
+
+\cite[Kap. 1.2]{Bro11} \\
+
+Eine weitverbreitete Eigenschaft von Nature-Inspired Algorithms ist die Kombination aus Regeln und Zufälligkeiten, um
+natürliche Phänomene zu imitieren \cite{NH15}. Die Einsatzmöglichkeiten scheinen unendlich zu sein: 
+
+
+\subsection{Optimierungen}
+Häufige Anwendungsfälle dieser Algorithmen sind Optimierungen von Funktionen. Bei Optimierungen
+handelt es sich in der Regel um die Suche nach einer Parameterkombination für eine gegebene Funktion $f$ um eine
+Kostenfunktion zu minimieren oder eine Wertefunktion zu maximieren.
+
+\subsection{Approximationen}
+Die Approximation beschreibt meist eine Funktion $f$, welche möglichst nahe an eine Zielfunktion angenähert werden
+möchte. Die approximierte Funktion $f$ wird aus einem Set an Beobachtungen\footnote{oftmals auch als $training$ $set$ aus
+der Data Science bekannt} generiert. Solche Approximationen werden häufig für Image Recognition verwendet
+und spielen ebenfalls eine wichtige Rolle bei der Klassifikation und dem Clustering von grossen Datenmengen.

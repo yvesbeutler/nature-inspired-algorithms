@@ -437,10 +437,10 @@ reserved.\par\permission}}
 \def\supervisor#1#2{\setbox\@titlesupervisor\vbox
   {\unvbox\@titlesupervisor \vskip 10pt% plus 1fil minus 1fil
   \def\baselinestretch{1}\large
-  \signature{Certified by}{#1 \\ #2 \\ Thesis Supervisor}}
+  \signature{Betreut durch}{#1 \\ #2 }}
   \setbox\@abstractsupervisor\vbox{\unvbox\@abstractsupervisor
   \vskip\baselineskip \def\baselinestretch{1}\@normalsize 
-  \par\noindent Thesis Supervisor: #1 \\ Title: #2}}
+  \par\noindent Betreuende Professorin: #1 }}
 
 % department chairman, not thesis committee chairman
 \def\chairman#1#2{\gdef\@chairmanname{#1}\gdef\@chairmantitle{#2}}
@@ -455,14 +455,14 @@ by\par
 \par
 \@prevdegrees
 \par
-\choosecase{Submitted to the} \choosecase{\@department} \\
-\choosecase{in partial fulfillment of the requirements for the}
-\choosecase{\@degreeword} 
-\choosecase{of}
+\choosecase{Erstellt an der} \choosecase{\@department} \\
+\choosecase{in teilweiser Erfüllung der Anforderungen an den Titel}
+%%\choosecase{\@degreeword} 
+%%\choosecase{of}
 \par
 \choosecase{\@degree}
 \par
-at the
+an der
 \par\MIT\par
 \@degreemonth\ \@degreeyear
 \par
@@ -470,7 +470,7 @@ at the
 \par
 \vfill
 \vskip 3\baselineskip
-\signature{Author}{\@author \\ \@department \\ \@thesisdate}
+\signature{Autor}{\@author \\ \@department \\ \@thesisdate}
 %\par
 %\vfill
 \unvbox\@titlesupervisor
@@ -489,9 +489,9 @@ by \\
 \@author \\[\baselineskip]}
 \par
 \def\baselinestretch{1}\@normalsize
-Submitted to the \@department \\
-on \@thesisdate, in partial fulfillment of the \\
-requirements for the \@degreeword\ of \\
+Erstellt an der \@department \\
+am \@thesisdate, in teilweiser Erfüllung der \\
+Anforderungen an den Titel \\
 \@degree
 \end{center}
 \par
@@ -519,8 +519,8 @@ requirements for the \@degreeword\ of \\
 % The \kern0pt pushes any depth into the height.  Thanks to Richard Stone.
 \def\endtitlepage{\par\kern 0pt\egroup\vss\egroup\newpage}
 
-\def\MIT{BERN UNIVERSITY OF APPLIED SCIENCES}
-\def\Mit{Bern University of Applied Sciences}
+\def\MIT{BERNER FACHHOCHSCHULE}
+\def\Mit{Berner Fachhochschule}
 
 \def\permission{\par\noindent{\centering
    The author hereby grants to MIT permission to reproduce and to
