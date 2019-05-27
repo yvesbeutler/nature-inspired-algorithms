@@ -1,215 +1,150 @@
-\chapter{Sample}
+\chapter{Schwarm-Algorithmen}
 
-Another important motivation was the trend towards placing more of the
-burden of performance on the compiler.  Many of the new architectures depend
-on an intelligent, optimizing compiler in order to realize anywhere near
-their peak performance
-\cite{ellis:bulldog,pet87,coutant:precision-compilers}.  In these cases, the
-compiler not only is responsible for faithfully generating native code to
-match the source language, but also must be aware of instruction latencies,
-delayed branches, pipeline stages, and a multitude of other factors in order
-to generate fast code \cite{gib86}.
+In der Natur ist es nicht ungewöhnlich, dass sich eine Vielzahl an unabhängigen Individuen
+der selben Spezies zu einer Gruppe zusammenschlisst um überlebenswichtige Aufgaben wie
+Nahrungssuche, Umsiedlung oder Fortpflanzung erfolgreich zu meistern. Diese Tierverbände kennen
+wir unter vielen verschiedenen Bezeichnungen: Herde, Rudel, Kolonie, Rotte, Kultur, Schule, Sippe
+oder Schwarm. Ein Schwarm ist der Inbegriff für eine riesige Ansammlung an Heringen im Atlantik
+oder einem Meer aus Monarchfaltern auf ihrem Weg quer durch Mittelamerika.
 
-Taking these ideas one step further, it seems that the floating point
-operations that are normally single, large instructions can be further broken
-down into smaller, simpler, faster instructions, with more control in the
-compiler and less in the hardware.  This is the idea behind a
-micro-optimizing FPU; break the floating point instructions down into their
-basic components and use a small, fast implementation, with a large part of
-the burden of hardware allocation and optimization shifted towards
-compile-time.
+Was alle Schwärme auszeichnet ist ihre Schwarmintelligenz. Durch die Kooperation jedes einzelnen,
+unabhängigen Individuums wird eine kollektive Intelligenz geschaffen, um auch mit scheinbar
+unlösbaren Aufgaben fertig zu werden. Dabei besitzen die einzelnen Individuen bei weitem nicht
+einen Bruchteil des Denkvermögens, welches durch den Verbund geschaffen wird. Das durch den Schwarm
+aufgebaute Wissen wird durch seine einzelnen Individuen oder die jeweilige Umgebung präserviert
+\cite[Kap. 6.1]{Bro11}.
 
-Along with the hardware speedups possible by using a $\mu$FPU, there are
-also optimizations that the compiler can perform on the code that is
-generated.  In a normal sequence of floating point operations, there are
-many hidden redundancies that can be eliminated by allowing the compiler to
-control the floating point operations down to their lowest level.  These
-optimizations are described in detail in section~\ref{ch1:opts}.
+Aufgrund der relativ einfachen Verständnisweise sowie der hohen Effizienz sehen Computerwissenschaftler
+grosses Potential in Schwarm-Algorithmen. Daher ist es auch nicht verwunderlich, beteiligen sich seit
+den 2000er Jahren viele Wissenschaftler an der Erforschung von Schwarmintelligenz \cite{LL18}.
 
-\section{Description of micro-optimization}\label{ch1:opts}
+\section{Ant System}
+Der italienische Wissenschaftler Marco Dorigo hat sich mit dem Schwarmverhalten von Ameisenkolonien bei 
+ihrer täglichen Futtersuche beschäftigt und 1991 den ersten Ameisenalgorithmus namens Ant System
+vorgestellt \cite{Wiki03}.
 
-In order to perform a sequence of floating point operations, a normal FPU
-performs many redundant internal shifts and normalizations in the process of
-performing a sequence of operations.  However, if a compiler can
-decompose the floating point operations it needs down to the lowest level,
-it then can optimize away many of these redundant operations.  
+Sobald Ameisen auf ihrer Futtersuche Nahrung gefunden haben und diese zurück zum Nest transportieren, beginnen
+sie, ein bestimmtes Pheromon auszusondern. Der Duftstoff legt sich entlang des zurückgelegten Weges richtung
+Nest ab. Anfänglich schwärmen Ameisen in alle möglichen Richtungen aus. Kürzere Wege zwischen Futterquelle und
+Nest sind von den Ameisen folglich stärker frequentiert und weisen eine höhere Pheromonkonzentration auf als
+längere Alternativrouten. Zudem neigen Ameisen bei der Wahl des Wegs dazu, den stärker duftenden Weg zu wählen.
+Dadurch kreiert die Ameisenkolonie durch ihre Schwarmintelligenz einen sehr kurzen Pfad. Diesen Weg nehmen wir
+Menschen meist als Ameisenstrasse wahr \cite[Kap. 6.3]{Bro11}.
 
-If there is some additional hardware support specifically for
-micro-optimization, there are additional optimizations that can be
-performed.  This hardware support entails extra ``guard bits'' on the
-standard floating point formats, to allow several unnormalized operations to
-be performed in a row without the loss information\footnote{A description of
-the floating point format used is shown in figures~\ref{exponent-format}
-and~\ref{mantissa-format}.}.  A discussion of the mathematics behind
-unnormalized arithmetic is in appendix~\ref{unnorm-math}.
+\begin{figure}[h!]
+    \centering
+    \includegraphics[scale=0.45]{resources/swarm_ant_system.png}
+    \caption{Funktionsweise des Ant Systems \cite{Wiki03}}
+    \label{fig:swarm}
+  \end{figure}
 
-The optimizations that the compiler can perform fall into several categories:
+In Grafik \ref{fig:swarm} können wir erkennen, dass die Ameisen nach einer gewissen Zeit die Strecken mit den
+höchsten Dufstoffkonzentrationen bevorzugen.
 
-\subsection{Post Multiply Normalization}
+\subsection{Funktionsweise}
+Möchte man den Ant System Algorithmus implementieren, müssen bestimmte Parameter berücksichtigt werden. Die
+Wahrscheinlichkeiten, dass sich eine Ameise am Knotenpunkt $i$ entscheidet nach $j$ zu krabbeln, kann durch
+Formel \ref{eq_ant} berechnet werden \cite{Blu03}. 
 
-When more than two multiplications are performed in a row, the intermediate
-normalization of the results between multiplications can be eliminated.
-This is because with each multiplication, the mantissa can become
-denormalized by at most one bit.  If there are guard bits on the mantissas
-to prevent bits from ``falling off'' the end during multiplications, the
-normalization can be postponed until after a sequence of several
-multiplies\footnote{Using unnormalized numbers for math is not a new idea; a
-good example of it is the Control Data CDC 6600, designed by Seymour Cray.
-\cite{thornton:cdc6600} The CDC 6600 had all of its instructions performing
-unnormalized arithmetic, with a separate {\tt NORMALIZE} instruction.}.
+\begin{equation}
+    \label{eq_ant}
+    P_{ij}(t) = \begin{cases}
+        \frac{[T_{ij}(t)]^\alpha \cdot [N_{ij}]^\beta}
+        {\sum_{j \in {allowed}}^{} [T_{ij}(t)]^\alpha \cdot [N_{ij}]^\beta} & \text{wenn } j \in {allowed} \\
+        0 & \, \text{sonst}
+        \end{cases}
+\end{equation}
+\label{eq_ant1}
 
-% This is an example of how you would use tgrind to include an example
-% of source code; it is commented out in this template since the code
-% example file does not exist.  To use it, you need to remove the '%' on the
-% beginning of the line, and insert your own information in the call.
-%
-%\tagrind[htbp]{code/pmn.s.tex}{Post Multiply Normalization}{opt:pmn}
+Der interessanteste Part dieser Formel stellt die Pheromonverteilung [\ref{eq_pheromon}] dar. Sie liefert den Wert
+für die Pheromonkonzentration zwischen Knoten $i$ und $j$. Die Pheromonintensität ergibt sich
+aus dem vorgängigen Durchlauf $(t-1)$ und den aktuell durchgelaufenen Ameisen $\Delta T_{ij}(t, t+1)$. Sie
+unterliegt einem zeitlichen Zerfall, auch Evaporation genannt. Dieser Koeffizient $\rho$  stellt sicher, dass
+die Pheromonkonzentration nicht ins Unendliche ansteigen kann; Dementsprechend sollte auch $\rho < 1$ sein.
+Die Pheromonwerte jeder Teilstrecke werden nach jedem Durchgang mittels (\ref{eq_pheromon}) neu berechnet.
 
-As you can see, the intermediate results can be multiplied together, with no
-need for intermediate normalizations due to the guard bit.  It is only at
-the end of the operation that the normalization must be performed, in order
-to get it into a format suitable for storing in memory\footnote{Note that
-for purposed of clarity, the pipeline delays were considered to be 0, and
-the branches were not delayed.}.
+\begin{equation}
+    \label{eq_pheromon}
+    T_{ij}(t + 1) = \rho \cdot [T_{ij}(t)] + \Delta T_{ij}(t, t+1)
+\end{equation}
+\label{eq_pheromon1}
 
-\subsection{Block Exponent}
+Nebst der Pheromonverteilung existiert noch eine weitere Komponente, nämlich die Sichtbarkeit der einzelnen
+Knoten $N_{ij}$. Ameisen richten sich nicht nur nach der Duftintensität der Strecke, sondern bevorzugen
+nebenbei auch kürzere Wege. Die Sichtbarkeit kann ganz simpel als $\frac{1}{d_{ij}}$ berechnet werden. Dieser
+Ansatz ist Greedy \cite{Wiki04} und könnte auch durch eine ausgefeiltere Heuristik ersetzt werden.
 
-In a unoptimized sequence of additions, the sequence of operations is as
-follows for each pair of numbers ($m_1$,$e_1$) and ($m_2$,$e_2$).
-\begin{enumerate}
-  \item Compare $e_1$ and $e_2$.
-  \item Shift the mantissa associated with the smaller exponent $|e_1-e_2|$
-        places to the right.
-  \item Add $m_1$ and $m_2$.
-  \item Find the first one in the resulting mantissa.
-  \item Shift the resulting mantissa so that normalized
-  \item Adjust the exponent accordingly.
-\end{enumerate}
+Um nicht die gleichen Knoten mehrfach zu besuchen, wird eine Tabu-Liste eingesetzt. Diese Liste existiert
+für jede einzelne Ameise und wird in jedem Durchlauf mit dem aktuell besuchten Knoten erweitert. Folglich
+berechnet sich die Liste der erlaubten Knoten aus der Differenz der Liste aller Knoten und der Tabu-Liste,
+in (\ref{eq_ant}) als $allowed$ gekennzeichnet.
 
-Out of 6 steps, only one is the actual addition, and the rest are involved
-in aligning the mantissas prior to the add, and then normalizing the result
-afterward.  In the block exponent optimization, the largest mantissa is
-found to start with, and all the mantissa's shifted before any additions
-take place.  Once the mantissas have been shifted, the additions can take
-place one after another\footnote{This requires that for n consecutive
-additions, there are $\log_{2}n$ high guard bits to prevent overflow.  In
-the $\mu$FPU, there are 3 guard bits, making up to 8 consecutive additions
-possible.}.  An example of the Block Exponent optimization on the expression
-X = A + B + C is given in figure~\ref{opt:be}.
+Durch die Parameter $\alpha \text{ und } \beta$ können die Pheromonverteilung und die Sichtbarkeit
+gewichtet werden. Dieses Feintuning kann das Ant System zu einem reinen Greedy-Algorithmus
+$(\alpha = 0, \beta = 1)$ oder zu einem Zufallsalgorithmus $(\alpha = 1, \beta = 0)$ verändern.
 
-% This is an example of how you would use tgrind to include an example
-% of source code; it is commented out in this template since the code
-% example file does not exist.  To use it, you need to remove the '%' on the
-% beginning of the line, and insert your own information in the call.
-%
-%\tgrind[htbp]{code/be.s.tex}{Block Exponent}{opt:be}
 
-\section{Integer optimizations}
+\subsection{Anwendungsgebiete}
+Der Ant System Algorithmus wurde zum Lösen von Kombinationsproblemen entwickelt. Bei diesem Problemtypen
+besteht die Schwierigkeit darin, aus mehreren Teillösungen die optimale Kombination zu finden. Die Summe
+an möglichen Lösungen übersteigt somit die Kompetenz von traditionellen Pfadsuch-Algorithmen. Wie anfänglich
+in Kapitel 1 behandelt, eignen sich Nature-Inspired Algorithmen für diese Aufgaben besonders gut. Da es
+sich bei diesen Problemen um heuristische Optimierungsverfahren handelt, kann der Ant System Algorithmus
+aber nicht garantieren, jeweils den bestmöglichen Lösungsweg zu finden \cite{Wiki03}.
 
-As well as the floating point optimizations described above, there are
-also integer optimizations that can be used in the $\mu$FPU.  In concert
-with the floating point optimizations, these can provide a significant
-speedup.  
+Mit dieser Art von Kombinationsproblemen beschäftigen sich beispielsweise Logistikunternehmen, um eine
+optimale Transportroute zu finden. Weiter kann das Ant System auch zur Konstruktion von Halbleiterplatten
+oder bei der Kantendetektion in der Bildverarbeitung eingesetzt werden \cite{Wiki07}.
 
-\subsection{Conversion to fixed point}
+\subsubsection{Travelling Salesman Problem (TSP)}
+Das Problem des Handelsreisenden ist ein bekanntes Beispiel von kombinatorischen Optimierungsproblemen
+\cite{Wiki05}. Man versucht eine festgelegte Anzahl Städte zu besuchen, wobei keine Stadt bis auf die
+Anfangsstadt mehrfach besucht werden darf. Ziel ist es, einen optimalen Weg zu finden, bei welchem der
+Handelsreisende die kleinstmögliche Distanz zurücklegen muss. Das TSP gehört zu den NP-vollständigen
+Problemen, daher existiert kein Algorithmus, welcher den optimalen Weg in polynomieller Laufzeit bestimmen
+kann \cite{Wiki06}.
 
-Integer operations are much faster than floating point operations; if it is
-possible to replace floating point operations with fixed point operations,
-this would provide a significant increase in speed.
+\subsection{Erweiterungen}
+Das 1991 vorgestellte Ant System wurde mehrfach weiterentwickelt, um sowohl Laufzeit als auch Effizienz zu
+verbessern. Die populärsten Weiterentwicklungen werden hier kurz erläutert.
 
-This conversion can either take place automatically or or based on a
-specific request from the programmer.  To do this automatically, the
-compiler must either be very smart, or play fast and loose with the accuracy
-and precision of the programmer's variables.  To be ``smart'', the computer
-must track the ranges of all the floating point variables through the
-program, and then see if there are any potential candidates for conversion
-to floating point.  This technique is discussed further in
-section~\ref{range-tracking}, where it was implemented.
+\subsubsection{Elite Ant System (1991)}
+Das Elite Ant System unterscheidet sich nur geringfügig vom ursprünglichen Ant System. Es verwendet eine
+angepasste Pheromonverteilungsfunktion \cite{MZ14}. Anders als beim Ant System, bei welchem jede Ameise
+die gleiche Menge an Pheromonen ausströmt, existieren sogenannte Elite-Ameisen, welche eine grössere Menge
+an Duftstoffen ausströmen und so die Kolonie bei der Pfadsuche wesentlicher beeinflussen. Der
+nach jeder Iteration kürzeste Pfad wird als Elitepfad angesehen und die darauf wandernden Ameisen sind
+folglich die Elite-Ameisen \cite{BHS99}.
 
-The other way to do this is to rely on specific hints from the programmer
-that a certain value will only assume a specific range, and that only a
-specific precision is desired.  This is somewhat more taxing on the
-programmer, in that he has to know the ranges that his values will take at
-declaration time (something normally abstracted away), but it does provide
-the opportunity for fine-tuning already working code.
+\subsubsection{Rank-based Ant System (1997)}
+Eine weitere Erweiterung des Ant System stellt das Rank-based Ant System dar. Nach jeder Iteration werden
+die Ameisen anhand von ihrem zurückgelegten Pfad der Länge nach sortiert. Ameisen mit den kürzeren Pfaden
+tragen anschliessend verhältnismässig mehr zur Pheromonverteilung bei als solche mit längeren. Zusätzlich
+werden nur die Anzahl $\omega$ besten Ameisen für die Berechnung verwendet. Dies verringert die Gefähr, dass
+eine hohe Pheromonkonzentration durch viele Ameisen auf dem gleichen sub-optimalen Pfad entsteht
+\cite{BHS99}.
 
-Potential applications of this would be simulation programs, where the
-variable represents some physical quantity; the constraints of the physical
-system may provide bounds on the range the variable can take.
-\subsection{Small Constant Multiplications}
+\subsubsection{Max-Min Ant System (1999)}
+Anders als beim Ant System legt nur die beste Ameise ihre Pheromonspur. Desweiteren werden die
+Pheromonkonzentrationen pro Teilpfad mit einem Max- und Minimum-Wert versehen. So können keine gänzlich
+unattraktiven und auch keine zu stark konzentrierten Pfade entstehen. Wenn die beste Ameise eine Teilstrecke
+$ij$ nicht passiert hat, ist der dazukommende Pheromonwert als $\Delta T_{ij}^\text{best} = 0$ definiert
+\cite{Dor07}.
 
-One other class of optimizations that can be done is to replace
-multiplications by small integer constants into some combination of
-additions and shifts.  Addition and shifting can be significantly faster
-than multiplication.  This is done by using some combination of
-\begin{eqnarray*}
-a_i & = & a_j + a_k \\
-a_i & = & 2a_j + a_k \\
-a_i & = & 4a_j + a_k \\
-a_i & = & 8a_j + a_k \\
-a_i & = & a_j - a_k \\
-a_i & = & a_j \ll m \mbox{shift}
-\end{eqnarray*}
-instead of the multiplication.  For example, to multiply $s$ by 10 and store
-the result in $r$, you could use:
-\begin{eqnarray*}
-r & = & 4s + s\\
-r & = & r + r
-\end{eqnarray*}
-Or by 59:
-\begin{eqnarray*}
-t & = & 2s + s \\
-r & = & 2t + s \\
-r & = & 8r + t
-\end{eqnarray*}
-Similar combinations can be found for almost all of the smaller
-integers\footnote{This optimization is only an ``optimization'', of course,
-when the amount of time spent on the shifts and adds is less than the time
-that would be spent doing the multiplication.  Since the time costs of these
-operations are known to the compiler in order for it to do scheduling, it is
-easy for the compiler to determine when this optimization is worth using.}.
-\cite{magenheimer:precision}
 
-\section{Other optimizations}
+\section{Bees Algorithm}
+Eine Kolonie Honigbienen schwärmt bei ihrer Suche nach Nektar in einem Radius von über 10km in alle Richtungen
+aus. Blumenfelder mit einer grossen Menge an Nektar oder Pollen für die Nachkömmlinge, sollen von einer
+grösseren Menge Bienen angeflogen werden als kleinere Felder mit weitaus weniger Nektar oder Pollen. Sogenannte
+Erkundungsbienen, welche zur Klasse der Arbeiterbienen gehören, fliegen zufällige Blumenfelder an. Zurück im
+Bienenstock evaluieren die Erkundungsbienen die gefundenen Blumenfelder anhand verschiedener Kriterien wie
+Nektarmenge oder Distanz zum Bienenstock. Mit einem Wackeltanz kommunizieren die Bienen ihre Ergebnisse mit
+der restlichen Kolonie. Aus dem Wackeltanz können die Bienen die Richtung zum Blumenfeld, die zurückzulegende
+Distanz und die ungefähre Nektarmenge ableiten \cite{Bro11}.
 
-\subsection{Low-level parallelism}
+Diese einzigartige Fertigkeit lässt die Bienenkolonie immer die gerade passende Anzahl an Arbeiterbienen an
+Blumenfelder in ihrem Suchradius ausschwärmen.
 
-The current trend is towards duplicating hardware at the lowest level to
-provide parallelism\footnote{This can been seen in the i860; floating point
-additions and multiplications can proceed at the same time, and the RISC
-core be moving data in and out of the floating point registers and providing
-flow control at the same time the floating point units are active. \cite{byte:i860}}
+\subsection{Funktionsweise}
 
-Conceptually, it is easy to take advantage to low-level parallelism in the
-instruction stream by simply adding more functional units to the $\mu$FPU,
-widening the instruction word to control them, and then scheduling as many
-operations to take place at one time as possible.
-
-However, simply adding more functional units can only be done so many times;
-there is only a limited amount of parallelism directly available in the
-instruction stream, and without it, much of the extra resources will go to
-waste.  One process used to make more instructions potentially schedulable
-at any given time is ``trace scheduling''.  This technique originated in the
-Bulldog compiler for the original VLIW machine, the ELI-512.
-\cite{ellis:bulldog,colwell:vliw}  In trace scheduling, code can be
-scheduled through many basic blocks at one time, following a single
-potential ``trace'' of program execution.  In this way, instructions that
-{\em might\/} be executed depending on a conditional branch further down in
-the instruction stream are scheduled, allowing an increase in the potential
-parallelism.  To account for the cases where the expected branch wasn't
-taken, correction code is inserted after the branches to undo the effects of
-any prematurely executed instructions.
-
-\subsection{Pipeline optimizations}
-
-In addition to having operations going on in parallel across functional
-units, it is also typical to have several operations in various stages of
-completion in each unit.  This pipelining allows the throughput of the
-functional units to be increased, with no increase in latency.
-
-There are several ways pipelined operations can be optimized.  On the
-hardware side, support can be added to allow data to be recirculated back
-into the beginning of the pipeline from the end, saving a trip through the
-registers.  On the software side, the compiler can utilize several tricks to
-try to fill up as many of the pipeline delay slots as possible, as
-seendescribed by Gibbons. \cite{gib86}
+\subsection{Anwendungsgebiete}
