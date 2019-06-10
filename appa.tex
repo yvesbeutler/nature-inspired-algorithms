@@ -55,8 +55,26 @@
             population.kill_weakest()
             generation += 1
     
-        print(f'The population converged after {generation} generations')
+        print(f'Population converged after {generation} generations')
     \end{lstlisting}
+
+\section{Bees Algorithm}
+
+\begin{lstlisting}[language=Python, caption=Bees Algorithm (Pseudocode) {\cite{Wiki08}}]
+for i=1 to num_of_scouts:
+    scout[i] = initialize_scout()
+    flower_patch[i] = initialize_patch(scout[i])
+    
+    while stop_condition=FALSE:
+        recruitment()
+        for i=1 to num_of_best_sites:
+            flower_patch[i] = local_search(flower_patch[i])
+            flower_patch[i] = site_abandonment(flower_patch[i])
+            flower_patch[i] = neighbourhood_shrinking(flower_patch[i])
+    
+        for i=num_of_best_sites to num_of_scouts:
+            flower_patch[i] = global_search(flower_patch[i])
+\end{lstlisting}
 
 \clearpage
 \newpage

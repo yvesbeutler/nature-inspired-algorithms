@@ -1,0 +1,65 @@
+This is BibTeX, Version 0.99d (TeX Live 2018)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+A level-1 auxiliary file: cover.aux
+A level-1 auxiliary file: contents.aux
+A level-1 auxiliary file: chap1.aux
+A level-1 auxiliary file: chap2.aux
+A level-1 auxiliary file: chap3.aux
+A level-1 auxiliary file: appa.aux
+A level-1 auxiliary file: biblio.aux
+The style file: alpha.bst
+Database file #1: main.bib
+Warning--to sort, need author or key in Wiki01
+Warning--to sort, need author or key in Wiki03
+Warning--to sort, need author or key in Wiki02
+Warning--to sort, need author or key in Tut
+Warning--to sort, need author or key in Wiki04
+Warning--to sort, need author or key in Wiki07
+Warning--to sort, need author or key in Wiki05
+Warning--to sort, need author or key in Wiki06
+Warning--to sort, need author or key in Wiki08
+Warning--to sort, need author or key in You
+Warning--empty publisher in Anr18
+You've used 25 entries,
+            2543 wiz_defined-function locations,
+            699 strings with 8429 characters,
+and the built_in function-call counts, 6574 in all, are:
+= -- 617
+> -- 180
+< -- 11
++ -- 58
+- -- 49
+* -- 355
+:= -- 959
+add.period$ -- 73
+call.type$ -- 25
+change.case$ -- 113
+chr.to.int$ -- 17
+cite$ -- 46
+duplicate$ -- 304
+empty$ -- 650
+format.name$ -- 75
+if$ -- 1409
+int.to.chr$ -- 9
+int.to.str$ -- 0
+missing$ -- 16
+newline$ -- 126
+num.names$ -- 45
+pop$ -- 253
+preamble$ -- 1
+purify$ -- 145
+quote$ -- 0
+skip$ -- 241
+stack$ -- 0
+substring$ -- 213
+swap$ -- 25
+text.length$ -- 11
+text.prefix$ -- 11
+top$ -- 0
+type$ -- 172
+warning$ -- 11
+while$ -- 36
+width$ -- 29
+write$ -- 289
+(There were 11 warnings)

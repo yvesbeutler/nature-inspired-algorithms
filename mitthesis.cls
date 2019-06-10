@@ -484,16 +484,16 @@ an der
 % but we want people to also be able to get at the more
 % basic abstract environment
 \def\abstractpage{\cleardoublepage
-\begin{center}{\large{\bf \@title} \\
-by \\
-\@author \\[\baselineskip]}
-\par
-\def\baselinestretch{1}\@normalsize
-Erstellt an der \@department \\
-am \@thesisdate, in teilweiser Erfüllung der \\
-Anforderungen an den Titel \\
-\@degree
-\end{center}
+% \begin{center}{\large{\bf \@title} \\
+% by \\
+% \@author \\[\baselineskip]}
+% \par
+% \def\baselinestretch{1}\@normalsize
+% Erstellt an der \@department \\
+% am \@thesisdate, in teilweiser Erfüllung der \\
+% Anforderungen an den Titel \\
+% \@degree
+% \end{center}
 \par
 \begin{abstract}}
 

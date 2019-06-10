@@ -1,11 +1,11 @@
 \chapter{Schwarm-Algorithmen}
 
 In der Natur ist es nicht ungewöhnlich, dass sich eine Vielzahl an unabhängigen Individuen
-der selben Spezies zu einer Gruppe zusammenschlisst um überlebenswichtige Aufgaben wie
+derselben Spezies zu einer Gruppe zusammenschlisst, um überlebenswichtige Aufgaben wie
 Nahrungssuche, Umsiedlung oder Fortpflanzung erfolgreich zu meistern. Diese Tierverbände kennen
 wir unter vielen verschiedenen Bezeichnungen: Herde, Rudel, Kolonie, Rotte, Kultur, Schule, Sippe
-oder Schwarm. Ein Schwarm ist der Inbegriff für eine riesige Ansammlung an Heringen im Atlantik
-oder einem Meer aus Monarchfaltern auf ihrem Weg quer durch Mittelamerika.
+oder Schwarm. Ein Schwarm ist der Inbegriff für eine riesige Ansammlung, zum Beispiel Heringe im Atlantik
+oder ein Meer aus Monarchfaltern auf ihrem Weg quer durch Mittelamerika.
 
 Was alle Schwärme auszeichnet ist ihre Schwarmintelligenz. Durch die Kooperation jedes einzelnen,
 unabhängigen Individuums wird eine kollektive Intelligenz geschaffen, um auch mit scheinbar
@@ -24,9 +24,9 @@ ihrer täglichen Futtersuche beschäftigt und 1991 den ersten Ameisenalgorithmus
 vorgestellt \cite{Wiki03}.
 
 Sobald Ameisen auf ihrer Futtersuche Nahrung gefunden haben und diese zurück zum Nest transportieren, beginnen
-sie, ein bestimmtes Pheromon auszusondern. Der Duftstoff legt sich entlang des zurückgelegten Weges richtung
+sie, ein bestimmtes Pheromon auszusondern. Der Duftstoff legt sich entlang des zurückgelegten Weges Richtung
 Nest ab. Anfänglich schwärmen Ameisen in alle möglichen Richtungen aus. Kürzere Wege zwischen Futterquelle und
-Nest sind von den Ameisen folglich stärker frequentiert und weisen eine höhere Pheromonkonzentration auf als
+Nest sind von den Ameisen stärker frequentiert und weisen eine höhere Pheromonkonzentration auf als
 längere Alternativrouten. Zudem neigen Ameisen bei der Wahl des Wegs dazu, den stärker duftenden Weg zu wählen.
 Dadurch kreiert die Ameisenkolonie durch ihre Schwarmintelligenz einen sehr kurzen Pfad. Diesen Weg nehmen wir
 Menschen meist als Ameisenstrasse wahr \cite[Kap. 6.3]{Bro11}.
@@ -39,7 +39,7 @@ Menschen meist als Ameisenstrasse wahr \cite[Kap. 6.3]{Bro11}.
   \end{figure}
 
 In Grafik \ref{fig:swarm} können wir erkennen, dass die Ameisen nach einer gewissen Zeit die Strecken mit den
-höchsten Dufstoffkonzentrationen bevorzugen.
+höchsten Duftstoffkonzentrationen bevorzugen.
 
 \subsection{Funktionsweise}
 Möchte man den Ant System Algorithmus implementieren, müssen bestimmte Parameter berücksichtigt werden. Die
@@ -72,7 +72,7 @@ Die Pheromonwerte jeder Teilstrecke werden nach jedem Durchgang mittels (\ref{eq
 Nebst der Pheromonverteilung existiert noch eine weitere Komponente, nämlich die Sichtbarkeit der einzelnen
 Knoten $N_{ij}$. Ameisen richten sich nicht nur nach der Duftintensität der Strecke, sondern bevorzugen
 nebenbei auch kürzere Wege. Die Sichtbarkeit kann ganz simpel als $\frac{1}{d_{ij}}$ berechnet werden. Dieser
-Ansatz ist Greedy \cite{Wiki04} und könnte auch durch eine ausgefeiltere Heuristik ersetzt werden.
+Ansatz ist Greedy \cite{Wiki04} und könnte auch durch eine ausgereiftere Heuristik ersetzt werden.
 
 Um nicht die gleichen Knoten mehrfach zu besuchen, wird eine Tabu-Liste eingesetzt. Diese Liste existiert
 für jede einzelne Ameise und wird in jedem Durchlauf mit dem aktuell besuchten Knoten erweitert. Folglich
@@ -105,7 +105,7 @@ Problemen, daher existiert kein Algorithmus, welcher den optimalen Weg in polyno
 kann \cite{Wiki06}.
 
 \subsection{Erweiterungen}
-Das 1991 vorgestellte Ant System wurde mehrfach weiterentwickelt, um sowohl Laufzeit als auch Effizienz zu
+Das 1991 vorgestellte Ant System wurde mehrfach weiterentwickelt, um sowohl Laufzeit, als auch Effizienz zu
 verbessern. Die populärsten Weiterentwicklungen werden hier kurz erläutert.
 
 \subsubsection{Elite Ant System (1991)}
@@ -120,13 +120,13 @@ folglich die Elite-Ameisen \cite{BHS99}.
 Eine weitere Erweiterung des Ant System stellt das Rank-based Ant System dar. Nach jeder Iteration werden
 die Ameisen anhand von ihrem zurückgelegten Pfad der Länge nach sortiert. Ameisen mit den kürzeren Pfaden
 tragen anschliessend verhältnismässig mehr zur Pheromonverteilung bei als solche mit längeren. Zusätzlich
-werden nur die Anzahl $\omega$ besten Ameisen für die Berechnung verwendet. Dies verringert die Gefähr, dass
+werden nur die Anzahl $\omega$ besten Ameisen für die Berechnung verwendet. Dies verringert die Gefahr, dass
 eine hohe Pheromonkonzentration durch viele Ameisen auf dem gleichen sub-optimalen Pfad entsteht
 \cite{BHS99}.
 
 \subsubsection{Max-Min Ant System (1999)}
-Anders als beim Ant System legt nur die beste Ameise ihre Pheromonspur. Desweiteren werden die
-Pheromonkonzentrationen pro Teilpfad mit einem Max- und Minimum-Wert versehen. So können keine gänzlich
+Anders als beim Ant System legt nur die beste Ameise ihre Pheromonspur. Des Weiteren werden die
+Konzentrationen pro Teilpfad mit einem Maximum- und Minimum-Wert versehen. So können keine gänzlich
 unattraktiven und auch keine zu stark konzentrierten Pfade entstehen. Wenn die beste Ameise eine Teilstrecke
 $ij$ nicht passiert hat, ist der dazukommende Pheromonwert als $\Delta T_{ij}^\text{best} = 0$ definiert
 \cite{Dor07}.
@@ -135,16 +135,41 @@ $ij$ nicht passiert hat, ist der dazukommende Pheromonwert als $\Delta T_{ij}^\t
 \section{Bees Algorithm}
 Eine Kolonie Honigbienen schwärmt bei ihrer Suche nach Nektar in einem Radius von über 10km in alle Richtungen
 aus. Blumenfelder mit einer grossen Menge an Nektar oder Pollen für die Nachkömmlinge, sollen von einer
-grösseren Menge Bienen angeflogen werden als kleinere Felder mit weitaus weniger Nektar oder Pollen. Sogenannte
+grösseren Menge Bienen angeflogen werden, als kleinere Felder mit weitaus weniger Nektar oder Pollen. Sogenannte
 Erkundungsbienen, welche zur Klasse der Arbeiterbienen gehören, fliegen zufällige Blumenfelder an. Zurück im
 Bienenstock evaluieren die Erkundungsbienen die gefundenen Blumenfelder anhand verschiedener Kriterien wie
 Nektarmenge oder Distanz zum Bienenstock. Mit einem Wackeltanz kommunizieren die Bienen ihre Ergebnisse mit
 der restlichen Kolonie. Aus dem Wackeltanz können die Bienen die Richtung zum Blumenfeld, die zurückzulegende
 Distanz und die ungefähre Nektarmenge ableiten \cite{Bro11}.
-
 Diese einzigartige Fertigkeit lässt die Bienenkolonie immer die gerade passende Anzahl an Arbeiterbienen an
 Blumenfelder in ihrem Suchradius ausschwärmen.
 
 \subsection{Funktionsweise}
 
+Wie in Listing A.2 zu erkennen ist, wird über eine bestimmte Anzahl Erkundungsbienen iteriert, welche zufällig
+in der Landschaft platziert werden. Jede so besuchte Blumenwiese wird mit einem Wert versehen, welcher Auskunft
+über ihre Attraktivität liefert. Dies kann mit dem Fitnesswert aus Kapitel \ref{fig:genetics} verglichen werden.
+Eine Blumenwiese steht für eine mögliche Lösung, welche jedoch noch optimiert werden kann. Solange die
+Abbruchbedingung noch nicht erreicht ist, werden Arbeiterbienen im Recruiting-Prozess für das Sammeln
+von Nektar und Pollen rekrutiert. Je attraktiver die Blumenwiese, desto mehr Bienen sendet der Bienenstock in diese
+Richtung aus.
+
+Wie in Zeile 7 dargestellt, werden nur die besten Blumenwiesen weiter behandelt. Die dafür rekrutierten Bienen
+werden in einem gewissen Radius um die Blumenwiese platziert. Dies entspricht einer lokalen Suche. Landet nun eine
+Biene auf einer Blumenwiese mit besserem Rating, so übernimmt diese Biene neu die Rolle als Erkundungsbiene. Wenn
+keine Biene eine attraktivere Blumenwiese (oder Lösung) findet, so wird der Suchradius um die initiale Blumenwiese
+verkleinert. Dieser Prozess nennt sich auch Neighbourhood Shrinking. Wenn die Blumenwiese inklusive dem ihr zugehörigen
+Suchradius keine brauchbaren Lösungen bereithält, wird das gesamte Gebiet nach einer gewissen Zahl an Iterationen
+komplett verlassen (Zeile 9).
+
+Damit der Bees Algorithm nicht in lokalen Minima stecken bleibt, werden die Erkundungsbienen, welche die am wenigsten
+attraktiven Blumenwiesen gefunden haben, von diesen abkommandiert und abermals zufällig in der Landschaft platziert.
+Dadurch führt der Algorithmus neben einer lokalen auch noch eine globale Suche durch \cite{Wiki08}.
+
 \subsection{Anwendungsgebiete}
+
+Der Bee Algorithm kann für Optimierungsprobleme wie das TSP \cite{Wiki05} verwendet werden. Bemerkenswert ist die Tatsache,
+dass der Algorithmus für das Load Balancing grosser Serverfarmen von Web Hosting Firmen eingesetzt wird. So werden mit dem
+Bees Algorithm einer Region genauso viele Server zur Verfügung gestellt, wie der Hoster entbehren kann. Dabei ist die
+Wichtigkeit der Region, welche hier als Blumenwiese agiert, das Hauptmerkmal zur Verteilung. Die einzelnen Server übernehmen
+dabei die Rolle der Bienen \cite{You}.

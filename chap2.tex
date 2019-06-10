@@ -2,7 +2,7 @@
 
 Diese Subkategorie von Algorithmen wurde durch den natürlichen Prozess der Evolution
 inspiriert. Charles Darwin begründete 1838 den Evolutionsprozess und das daraus resultierende
-Überleben der jeweils am besten angepassten Individuen mit der natürlichen Selektion \cite{Wiki02}.
+Überleben der jeweils am besten angepassten Individuen durch die natürliche Selektion \cite{Wiki02}.
 Diese stellt sicher, dass sich gut an den Lebensraum angepasst Lebewesen in der Natur
 durchsetzen können, währenddessen weniger gut angepasste Individuen aussterben. Zudem
 arbeitet die Natur nach dem 'Trial and Error' Prinzip. Dadurch werden Mutationen an
@@ -31,9 +31,9 @@ $A_n$ aus mehreren Genen.
 
 \subsection{Funktionsweise}
 
-Im folgenden werden die einzelnen Schritte erläutert, welche die Natur wie auch die Genetischen
+Im Folgenden werden die einzelnen Schritte erläutert, welche die Natur wie auch die Genetischen
 Algorithmen durchlaufen, um eine Anfangspopulation schrittweise weiterzuentwickeln. Die Natur
-sucht nach der erfolgsversprechendsten Lösung zum Überleben, wohingegen die Algorithmen
+sucht nach der erfolgversprechendsten Lösung zum Überleben, wohingegen die Algorithmen
 optimale Lösungen für ganz unterschiedliche Problemstellungen suchen. \cite{Mal17}
 
 \subsubsection{Initiale Population}
@@ -78,21 +78,21 @@ gehalten und berechnet lediglich die Summe der vorhandenen Gene. Die Population 
 wenn ein Individuum den Fitnesswert 5 erreicht, sprich alle Gene vorhanden sind.
 
 Zweck dieses Listings ist es, den Ablauf eines Genetischen Algorithmus verständlich darzustellen.
-Für eine bessere Übersicht wurden dazu uninteressante Teile des Codes gänzlich weggelassen.
+Für eine bessere Übersicht wurden dazu die uninteressanten Teile des Codes gänzlich weggelassen.
 
 \subsection{Vorteile}
 Genetische Algorithmen haben gewisse Vorzüge bei der Lösung von komplexen
 Problemstellungen gegenüber traditionellen Verfahren. Durch den modularen Aufbau
 mit den drei Hauptfunktionen Selektion, Kreuzung und Mutation, lassen sich diese
 Algorithmen einfach parallelisieren, was sich in einer besseren Rechenzeit bemerkbar
-macht. Weiter generieren sie nicht nur eine Lösung sondern eine Vielzahl an möglichen
+macht. Weiter generieren sie nicht nur eine Lösung, sondern eine Vielzahl an möglichen
 Lösungen, welche mit der Zeit immer bessere Ergebnisse liefern. \cite{Gou19}
 
 \subsection{Anwendungsgebiete}
 Es existieren schier endlose Einsatzmöglichkeiten für Genetische Algorithmen. Sie werden unter anderem
 zum Trainieren von Neuronalen Netzwerken eingesetzt, zur Berechnung von Fahrplänen wie auch den zu fahrenden
 Routen (analog dem Traveling Salesman Problem), zur Konstruktion von Aerodynamischen Fahrzeugchassis in
-der Luftfahrts- sowie in der Automobilbranche und häufig auch in der Finanzwirtschaft wie beispielsweise
+der Luftfahrt, in der Automobilbranche und häufig auch in der Finanzwirtschaft wie beispielsweise
 zur dynamischen Preisberechnung \cite{Tut}.
 
 \section{Genetic Programming}
@@ -106,8 +106,8 @@ von Generation zu Generation besser auf die jeweilige Problemstellung angepasst 
 
 \subsection{Darstellungsformen}
 Es stellt sich die Frage, wie eine Applikation repräsentiert werden kann, um anschliessend von
-Genetic Programming optimiert werden zu können. Es existieren nebst Tree- und Stack-basierten
-eine Lineare sowie eine Kartesische Darstellungsform. Im folgenden wird die Tree-basierte Form
+Genetic Programming optimiert werden zu können. Es existieren nebst tree- und stack-basierten
+eine lineare sowie eine kartesische Darstellungsform. Im Folgenden wird die tree-basierte Form
 genauer erläutert.
 
 \begin{figure}[h!]
@@ -117,22 +117,22 @@ genauer erläutert.
   \label{fig:gp_tree}
 \end{figure}
 
-Wie in Grafik \ref{fig:gp_tree} erkennbar ist, werden die einzelnen Operationen in der Tree-basierten
+Wie in Grafik \ref{fig:gp_tree} erkennbar ist, werden die einzelnen Operationen in der tree-basierten
 Darstellungsweise durch Knoten repräsentiert. Die Operanden sind dabei jeweils die Endknoten.
 Der Vorteil von einem Tree ist, dass mittels Rekursion sehr simpel über alle Äste iteriert werden
 kann. Bei der Kreuzung innerhalb des Genetic Programming Algorithmus werden beispielsweise einzelne
-Äste zweier Bäume miteinander kombiniert um einen komplett neuen Baum zu kreieren. \cite{GenTree}
+Äste zweier Bäume miteinander kombiniert, um einen komplett neuen Baum zu kreieren. \cite{GenTree}
 
 \subsection{Anwendungsgebiete}
 Genetic Programming wird häufig als Machine Learning Tool eingesetzt. Es ist besonders nützlich, wenn
 eine Approximation der finalen Lösung genügt, da die Berechnung einer exakten Lösung zu aufwändig
 wäre. Ausserdem hilft es in Fällen, wo die genaue Form der Lösung zu Beginn unbekannt ist. Häufige
-Einsatzgebiete sind Data Modeling, Feature selection und Klassifikation.
+Einsatzgebiete sind Data Modeling, Feature Selection und Klassifikation.
 
 Es existieren unzählige Beispiele, in denen mit Genetic Programming gleichwertige, wenn nicht sogar
 bessere Ergebnisse erzielt wurden als durch einen Menschen. Das Entwerfen von elektrischen
 Schaltplänen, KI in Computerspielen, Bilderkennung oder automatisiertes Bugfixing stellen nur einen
-kleinen Teil der Einsatzmöglichkeiten dar. \cite{Koz10}
+kleinen Teil der Einsatzmöglichkeiten dar \cite{Koz10}.
 
 
 \section{Weitere Algorithmen}
