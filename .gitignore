@@ -1,4 +1,6 @@
 .vscode
+
+# LaTeX
 *.aux
 *.gz
 *.log
@@ -9,3 +11,5 @@
 *.lot
 *.out
 *.toc
+*.bbl
+*.blg
